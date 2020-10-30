@@ -23,6 +23,18 @@ async function feed(parent, args, context, info) {
     }
 }
 
+async function users(parent, args, context, info) {
+
+    const users = await context.prisma.user.findMany()
+    const count = await context.prisma.user.count()
+
+    return { 
+        users, 
+        count,
+    }
+} 
+
 module.exports = {
     feed,
+    users,
 }

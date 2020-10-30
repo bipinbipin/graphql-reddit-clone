@@ -4,12 +4,12 @@ import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 
 const FEED_QUERY = gql`
-{
+query feed {
     feed {
         links {
             id
-            createdAt
             url
+            createdAt
             description
         }
     }

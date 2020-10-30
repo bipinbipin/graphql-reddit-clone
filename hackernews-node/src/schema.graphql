@@ -2,6 +2,7 @@ type Query {
     info: String!
     feed(filter: String, skip: Int, take: Int, orderBy: LinkOrderByInput): Feed!
     link(id: ID!): Link
+    users: Users
 }
 
 type Mutation {
@@ -18,11 +19,14 @@ type Subscription {
     newVote: Vote
 }
 
+scalar Date
+
 type Link {
     id: ID!
     description: String!
     url: String!
-    postedBy: User
+    createdAt: Date
+    postedBy: User!
     votes: [Vote!]!
 }
 
@@ -49,10 +53,14 @@ type Feed {
     count: Int!
 }
 
+type Users {
+    users: [User]
+    count: Int!
+}
+
 input LinkOrderByInput {
     description: Sort
     url: Sort
-    createdAt: Sort
     postedById: Sort
 }
 
